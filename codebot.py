@@ -110,6 +110,8 @@ def format_schedule(current_day):
             result += f"{lesson['Время']} + {lesson['Предмет']}\n"
         return result
 
+
+
 #Функция для ответа на каникулы и сессии
 @bot.message_handler(commands = ['Каникулы и сессии'])
 def start(message):
