@@ -31,9 +31,14 @@ def handle_buttons(message):
     elif message.text == "Дедлайны":
         bot.reply_to(message, "ggg(")
 
+# Функция для ответа на каникулы и сессии
+@bot.message_handler(commands=['Каникулы и сессии'])
+def start(message):
+    file = open('schidule.jpg')
+    bot.send_message(message.chat.id, file)
+
     elif message.text == "Каникулы и сессии":
-        file = open('schidule.jpg')
-        bot.send_message(message.chat.id, file)
+        bot.reply_to(message, "тут пока ничего нет(")
     elif message.text == "Включить уведомления на дедлайны":
         handle_notifications(message)
 
@@ -111,6 +116,11 @@ def format_schedule(current_day):
             result += f"{lesson['Время']} + {lesson['Предмет']}\n"
         return result
 
+#Функция для ответа на каникулы и сессии
+@bot.message_handler(commands = ['Каникулы и сессии'])
+def start(message):
+    file = open('schidule.jpg')
+    bot.send_message(message.chat.id, file)
 
 
 #Уведомления
