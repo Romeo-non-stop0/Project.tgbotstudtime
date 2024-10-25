@@ -29,7 +29,9 @@ def handle_buttons(message):
         bot.send_message(message.chat.id, datetime.datetime.now().strftime("%A"))
        # bot.reply_to(message, format_schedule(get_today_schedule()))
     elif message.text == "Дедлайны":
-        bot.reply_to(message, "ggg(")
+        bot.reply_to(message, "Практические занятия по C/C++ - до 28.10.2024")
+        bot.reply_to(message, "Основы Российской Государственности - до 03.11.2024")
+        bot.reply_to(message, "Безопасность жизнедеятельности - до 10.11.2024")
 
     elif message.text == "Каникулы и сессии":
         file = open('schidule.jpg')
