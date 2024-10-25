@@ -26,7 +26,7 @@ keyboard.add(button1, button2, button3, button4)
 def handle_buttons(message):
     if message.text == "Расписание":
         bot.send_message(message.chat.id, "Джага Джага")
-        bot.send_message(message.chat.id, current_day = datetime.datetime.now().strftime("%A"))
+        bot.send_message(message.chat.id, datetime.datetime.now().strftime("%A"))
        # bot.reply_to(message, format_schedule(get_today_schedule()))
     elif message.text == "Дедлайны":
         bot.reply_to(message, "ggg(")
