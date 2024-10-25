@@ -27,7 +27,7 @@ def handle_buttons(message):
     if message.text == "Расписание":
         bot.reply_to(message, format_schedule(get_today_schedule()))
     elif message.text == "Дедлайны":
-        bot.reply_to(message, "тут пока ничего нет(")
+        bot.reply_to(message, "ggg(")
 
     elif message.text == "Каникулы и сессии":
         bot.reply_to(message, "тут пока ничего нет(")
