@@ -84,11 +84,14 @@ schedule2 = {
         {'Время': '9:30 - 10:50', 'Предмет': 'Л-325, Английский язык (Черницкая М.Б.)'}
     ]
 }
-now = datetime.datetime.now()        # Получаем текущую дату с помощью библиотеки datetime
-week_number = now.isocalendar()[1]   # Получаем номер недели в году с помощью библиотеки datetime
+
 
 # Функция для получения расписания на текущий день
 def get_today_schedule():
+
+    now = datetime.datetime.now()        # Получаем текущую дату с помощью библиотеки datetime
+    week_number = now.isocalendar()[1]   # Получаем номер недели в году с помощью библиотеки datetime
+
     current_day = datetime.datetime.now().strftime("%A")
     if week_number % 2 == 0 and current_day in schedule2:
         return schedule2[current_day]
@@ -98,13 +101,13 @@ def get_today_schedule():
         return []
 
 # Функция для форматированного вывода расписания в текстовом формате
-def format_schedule(schedule):
-    if not schedule:
+def format_schedule(current_day):
+    if not current_day:
         return "Сегодня пар нет!"
     else:
         result = "Расписание на сегодня:\n"
-        for lesson in schedule:
-            result += f"{lesson['Время']} - {lesson['Предмет']}\n"
+        for lesson in current_day:
+            result += f"{lesson['Время']} + {lesson['Предмет']}\n"
         return result
 
 
@@ -138,6 +141,6 @@ def send_notification(chat_id, deadline_name):
     # Отправка уведомления пользователю
     bot.send_message(chat_id, f'Не забудьте о дедлайне: {deadline_name}')
 
-bot.polling(none_stop=True, interval=0)   # Запускаем бота
+bot.polling(none_stop=True)   # Запускаем бота
 
 #В этом примере бот отвечает на команду /schedule отправкой расписания занятий на текущий день в чат.
