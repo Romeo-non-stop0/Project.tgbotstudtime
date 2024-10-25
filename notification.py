@@ -7,14 +7,13 @@ TOKEN = '7830171145:AAEOU0N9FDRUbehoUpo_4GZYFsTPuFRKtlc'
 bot = telebot.TeleBot(TOKEN)
 
 notifications = {}
-
 @bot.message_handler(commands=['start'])
 def start(message):
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     item = types.KeyboardButton("Уведомления")
     markup.add(item)
     bot.send_message(message.chat.id, "Привет! Нажмите кнопку, чтобы добавить уведомление.", reply_markup=markup)
-@bot.message_handler(func=lambda message: message.text == "Уведомления")
+@bot.message_handler(func=lambda message: True)
 def handle_notifications(message):
     msg = bot.send_message(message.chat.id, "Введите количество минут до напоминания:")
     bot.register_next_step_handler(msg, process_minutes)
