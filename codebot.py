@@ -25,17 +25,18 @@ keyboard.add(button1, button2, button3, button4)
 @bot.message_handler(func=lambda message: True)
 def handle_buttons(message):
     if message.text == "Расписание":
-        bot.send_message(message.chat.id, "Джага Джага")
         bot.send_message(message.chat.id, datetime.datetime.now().strftime("%A"))
-       # bot.reply_to(message, format_schedule(get_today_schedule()))
+        bot.reply_to(message, format_schedule(get_today_schedule()))
     elif message.text == "Дедлайны":
         bot.reply_to(message, "Практические занятия по C/C++ - до 28.10.2024")
         bot.reply_to(message, "Основы Российской Государственности - до 03.11.2024")
         bot.reply_to(message, "Безопасность жизнедеятельности - до 10.11.2024")
 
     elif message.text == "Каникулы и сессии":
-        file = open('schidule.jpg')
-        bot.send_message(message.chat.id, file)
+        bot.reply_to(message, "Линейная алгебра и геометрия - 25.10.2024 (9:30, ул. Львовская 1в)")
+        bot.reply_to(message,"Технологии программирования - 26.10.2024 (Экзамен в SMART LMS)")
+        bot.reply_to(message,"Основы Российской государственности - 29.10.2024 (9:30 - 11:00 SMART LMS)")
+        bot.reply_to(message,"Безопасность жизнедеятельности - 30.10.2024 (9:30-16:00 ссылка)")
     elif message.text == "Включить уведомления на дедлайны":
         handle_notifications(message)
 
