@@ -25,9 +25,12 @@ keyboard.add(button1, button2, button3, button4)
 @bot.message_handler(func=lambda message: True)
 def handle_buttons(message):
     if message.text == "Расписание":
-        bot.send_message(1984839991, format_schedule(get_today_schedule()))
+        bot.send_message(message.chat.id, "Джага Джага")
+        bot.send_message(message.chat.id, current_day = datetime.datetime.now().strftime("%A"))
+        bot.reply_to(message, format_schedule(get_today_schedule()))
     elif message.text == "Дедлайны":
-        bot.reply_to(message, "тут пока ничего нет(")
+        bot.reply_to(message, "ggg(")
+
     elif message.text == "Каникулы и сессии":
         bot.reply_to(message, "тут пока ничего нет(")
     elif message.text == "Включить уведомления на дедлайны":
@@ -109,6 +112,7 @@ def format_schedule(schedule):
 def handle_notifications(message):
     msg = bot.send_message(message.chat.id, "Введите количество минут до напоминания:")
     bot.register_next_step_handler(msg, process_minutes)
+
 def process_minutes(message):
     try:
         minutes = int(message.text)
@@ -121,6 +125,7 @@ def process_minutes(message):
         bot.send_message(message.chat.id, "Пожалуйста, введите корректное количество минут.")
         msg = bot.send_message(message.chat.id, "Введите количество минут до напоминания:")
         bot.register_next_step_handler(msg, process_minutes)
+
 def process_deadline(message, minutes):
     deadline_name = message.text
     notifications[message.chat.id]['name'] = deadline_name
@@ -128,6 +133,7 @@ def process_deadline(message, minutes):
     bot.send_message(message.chat.id, f"Уведомление для '{deadline_name}' установлено на {minutes} минут.")
     # Запускаем таймер для отправки уведомления
     threading.Timer(minutes * 60, send_notification, args=(message.chat.id, deadline_name)).start()
+
 def send_notification(chat_id, deadline_name):
     # Отправка уведомления пользователю
     bot.send_message(chat_id, f'Не забудьте о дедлайне: {deadline_name}')
